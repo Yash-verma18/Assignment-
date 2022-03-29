@@ -1,0 +1,11 @@
+.containerTable {
+  margin: 10%;
+}
+
+body {
+  background-image: linear-gradient(
+    to right,
+    rgba(38, 223, 239, 0),
+    rgb(51, 137, 199)
+  );
+}

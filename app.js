@@ -13,6 +13,9 @@ app.use(
   })
 );
 
+// to acess css.
+app.use(express.static("public"));
+
 const https = require("https");
 
 app.get("/", function (req, res) {
