@@ -38,8 +38,30 @@ app.post("/", function (req, res) {
         // The whole response has been received. Print out the result.
         resp.on("end", () => {
           const userData = JSON.parse(data);
-          res.send(userData);
-          //   res.send(userData[0].stats);
+          //   res.send(userData);
+          //   console.log(userData[0].stats.thirty_day_sales);
+
+          var infoTable = new Array();
+
+          //   const tableData = {
+          //     name: userData[0].name,
+          //     thirty_day_sales: userData[0].stats.thirty_day_sales,
+          //     thirty_day_average_price:
+          //       userData[0].stats.thirty_day_average_price,
+          //     external_url: userData[0].external_url,
+          //     };
+
+          for (let i = 0; i < userData.length; i++) {
+            infoTable.push({
+              name: userData[i].name,
+              thirty_day_sales: userData[i].stats.thirty_day_sales,
+              thirty_day_average_price:
+                userData[i].stats.thirty_day_average_price,
+              external_url: userData[i].external_url,
+            });
+          }
+
+          res.send(infoTable);
           //   0.stats.thirty_day_sales
 
           //   const thirty_day_sales = userData[0].stats.thirty_day_sales;
