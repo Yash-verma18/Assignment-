@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowTable</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>thirty_day_sales</th>
+            <th>thirty_day_average_price</th>
+            <th>external_url</th>
+        </tr>
+
+        <% dataArray.forEach( (item)=> { %>
+            <tr>
+                <td>
+                    <%= item.name %>
+                </td>
+                <td>
+                    <%= item.thirty_day_sales %>
+                </td>
+                <td>
+                    <%= item.thirty_day_average_price %>
+                </td>
+                <td>
+                    <%= item.external_url %>
+                </td>
+            </tr>
+            <% }); %>
+
+
+
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+    </table>
+</body>
+
+</html>

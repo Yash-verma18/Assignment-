@@ -4,6 +4,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+// to set our apps view engine to ejs.
+app.set("view engine", "ejs");
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -15,10 +18,12 @@ const https = require("https");
 app.get("/", function (req, res) {
   // res.send("Server is up ")
   res.sendFile(__dirname + "/index.html");
+  res.render("table");
 });
 
 // Fetch Data
 // WALLET ADDR : 0x60795390f5393e5641fE8F04099632A884168719
+// 2nd wallet addr : 0x495f947276749Ce646f68AC8c248420045cb7b5e
 app.post("/", function (req, res) {
   const walletAddress = req.body.walletAdressInput;
 
@@ -61,13 +66,8 @@ app.post("/", function (req, res) {
             });
           }
 
-          res.send(infoTable);
-          //   0.stats.thirty_day_sales
-
-          //   const thirty_day_sales = userData[0].stats.thirty_day_sales;
-          //   const name = userData[0].name;
-
-          //   res.send(userData[0].name);
+          //   res.send(infoTable);
+          res.render("showTable", { dataArray: infoTable });
         });
       }
     )
