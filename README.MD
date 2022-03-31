@@ -7,7 +7,7 @@ Run this followed commands:
 npm install
 
 # Run the local server at localhost:3000
-npm run dev
+node app
 ```
 
 ## Once the local host is running enter Wallet Address 
