@@ -18,6 +18,14 @@ app.use(express.static("public"));
 
 const https = require("https");
 
+var tableArr = [];
+
+//Initializing Sorting Boolean Variable
+
+var nameBool = false;
+var salesBool = false;
+var priceBool = false;
+
 app.get("/", function (req, res) {
   // res.send("Server is up ")
   res.sendFile(__dirname + "/index.html");
@@ -25,8 +33,15 @@ app.get("/", function (req, res) {
 });
 
 // Fetch Data
-// WALLET ADDR : 0x60795390f5393e5641fE8F04099632A884168719
-// 2nd wallet addr : 0x495f947276749Ce646f68AC8c248420045cb7b5e
+
+/* 
+
+Try Following WALLET ADDR => 
+-  0x495f947276749Ce646f68AC8c248420045cb7b5e, 
+-  0x60795390f5393e5641fE8F04099632A884168719 
+
+*/
+
 app.post("/", function (req, res) {
   const walletAddress = req.body.walletAdressInput;
 
@@ -69,8 +84,19 @@ app.post("/", function (req, res) {
             });
           }
 
+          tableArr = infoTable;
+          var dataObjects = { id1: "names", id2: "sales", id3: "price" };
+
+          // reset the booleans
+          nameBool = false;
+          salesBool = false;
+          priceBool = false;
+
+          // console.log(tableArr);
           //   res.send(infoTable);
-          res.render("showTable", { dataArray: infoTable });
+          res.render("showTable", {
+            dataArray: infoTable,
+          });
         });
       }
     )
@@ -79,6 +105,76 @@ app.post("/", function (req, res) {
     });
 });
 
+app.get("/sortName", function (req, res) {
+  if (nameBool == false) {
+    var sortedStrings = tableArr.sort((a, b) => {
+      let fa = a.name.toLowerCase(),
+        fb = b.name.toLowerCase();
+
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1;
+      }
+      return 0;
+    });
+    nameBool = true;
+    res.render("showTable", { dataArray: sortedStrings });
+  } else {
+    var sortedStrings = tableArr.sort((a, b) => {
+      let fa = a.name.toLowerCase(),
+        fb = b.name.toLowerCase();
+
+      if (fa > fb) {
+        return -1;
+      }
+      if (fa < fb) {
+        return 1;
+      }
+      return 0;
+    });
+    nameBool = false;
+    res.render("showTable", { dataArray: sortedStrings });
+  }
+});
+
+app.get("/sortThirtyDaySales", function (req, res) {
+  if (salesBool == false) {
+    // Ascending order
+    var sortedAscending = tableArr.sort((a, b) => {
+      return a.thirty_day_sales - b.thirty_day_sales;
+    });
+    salesBool = true;
+    res.render("showTable", { dataArray: sortedAscending });
+  } else {
+    // Descending Order
+    var sortedDescending = tableArr.sort((a, b) => {
+      return b.thirty_day_sales - a.thirty_day_sales;
+    });
+    salesBool = false;
+    res.render("showTable", { dataArray: sortedDescending });
+  }
+});
+
+app.get("/sortPrice", function (req, res) {
+  if (priceBool == false) {
+    // Ascending order
+    var sortedAscending = tableArr.sort((a, b) => {
+      return a.thirty_day_average_price - b.thirty_day_average_price;
+    });
+    priceBool = true;
+    res.render("showTable", { dataArray: sortedAscending });
+  } else {
+    // Descending Order
+    var sortedDescending = tableArr.sort((a, b) => {
+      return b.thirty_day_average_price - a.thirty_day_average_price;
+    });
+    priceBool = false;
+    res.render("showTable", { dataArray: sortedDescending });
+  }
+});
+
 app.listen(3000, function () {
-  console.log("Server started successfully");
+  console.log("Server started on localhost 3000,successfully");
 });

@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('header'); -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+  <title>Input Wallet Adress</title>
+  <link rel="stylesheet" href="\div.css">
 
-<body>
-    <form action="/" method="post">
-        <label>Wallet Address: </label>
-        <input type="text" name="walletAdressInput">
-        <button type="submit">FETCH</button>
-    </form>
+  </head>
 
-</body>
+  <body>
 
-</html>
+    <div class=" input-group mb-3">
+      <form action="/" method="post">
+        <h4>Wallet Address :</h4>
+        <input type="text" name="walletAdressInput" class="form-control inputCss" placeholder="Enter Wallet Address">
+        <button type="submit" class="button btn btn-dark">FETCH</button>
+      </form>
+    </div>
+
+  </body>
+
+  </html>
