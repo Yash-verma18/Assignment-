@@ -4,6 +4,9 @@ Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
 
 ```bash
+Download [Node.js](https://nodejs.org/en/download/).
+Run this followed commands:
+
 # Install dependencies (only the first time)
 npm install
 
@@ -26,3 +29,8 @@ node app
 2. Thiry Day Sales : Click on "Thirty Day Sales" header, It will Sort the Table in "Ascending" Order. If you click the Header again, it will sort the table In "Descending" Order.
 
 3. Thirty Day Average Price : Click on "Thirty Day Average Price" header, It will Sort the Table in "Ascending" Order. If you click the Header again, it will sort the table In "Descending" Order.
+=======
+- Enter Wallet Address, If you dont have any Wallet address -> You can try this : 
+  - 0x495f947276749Ce646f68AC8c248420045cb7b5e
+  - 0x60795390f5393e5641fE8F04099632A884168719
+
